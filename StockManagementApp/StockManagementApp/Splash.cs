@@ -23,7 +23,7 @@ namespace StockManagementApp
         {
             startpoint += 1;
             MyProgress.Value = startpoint;
-            if(MyProgress.Value == 100)
+            if(MyProgress.Value == 5)
             {
                 MyProgress.Value = 0;
                 timer1.Stop();
