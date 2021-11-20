@@ -1,0 +1,17 @@
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\bin\Debug\StockManagementApp.exe.config
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\bin\Debug\StockManagementApp.exe
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\bin\Debug\StockManagementApp.pdb
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.csprojResolveAssemblyReference.cache
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.Form1.resources
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.Properties.Resources.resources
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.csproj.GenerateResource.Cache
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.exe
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.pdb
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.Splash.resources
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.ProductForm.resources
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.Categories.resources
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.SellerForm.resources
+F:\StockManagementApp\StockManagementApp\bin\Debug\StockManagementApp.exe.config
+F:\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.exe
+F:\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.pdb
+C:\Users\lab146\Desktop\StockManagementApp\StockManagementApp\obj\Debug\StockManagementApp.SellingForm.resources
