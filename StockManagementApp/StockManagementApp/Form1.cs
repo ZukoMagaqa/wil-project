@@ -1,5 +1,6 @@
 ﻿using BackendlessAPI;
 using BackendlessAPI.Async;
+using BackendlessAPI.Exception;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,12 +16,16 @@ namespace StockManagementApp
 {
     public partial class Form1 : Form
     {
-        Test test = new Test();
+        SellerForm seller;
+        SellingForm sellingForm;
+
         string selectedRole = "";
         string username = "";
         string password = "";
         bool isValid = false;
-        
+
+        public string loggedInUser { get; private set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -27,12 +33,13 @@ namespace StockManagementApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            seller = new SellerForm();
+            sellingForm = new SellingForm();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedRole = comboBox1.Text;
+            selectedRole = cmbxRoles.Text;
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -45,25 +52,36 @@ namespace StockManagementApp
 
             if (validate())
             {
-                string username = txtUsername.Text;
-                string password = txtPassword.Text;
+                username = txtUsername.Text;
+                password = txtPassword.Text;
 
-                test.Name = username;
-                test.Age = password;
-                test.Role = selectedRole;
+                BackendlessUser user;
 
-                AsyncCallback<Test> callback = new AsyncCallback<Test>(
-                    result =>
+                try
+                {
+                    user = Backendless.UserService.Login(username, password, true);
+
+                    this.Hide();
+
+                    switch (user.GetProperty("role").ToString())
                     {
-                        MessageBox.Show("Successfully saved ${0}", result.Name);
-                    },
-
-                    fault =>
-                    {
-                        MessageBox.Show(fault.Message);
-                    });
-                Backendless.Data.Of<Test>().Save(test, callback);
-
+                        case "ADMIN":
+                            this.Hide();
+                            seller.Show();
+                            break;
+                        case "SELLER":
+                            this.Close();
+                            sellingForm.Close();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch (BackendlessException exception)
+                {
+                    // login failed, to get the error code, use exception.Fault.FaultCode
+                    MessageBox.Show(exception.Message);
+                }
             }
             else
             {
@@ -82,12 +100,12 @@ namespace StockManagementApp
             }
             return isValid;
         }
-    }
 
-    public class Test
-    {
-      public string Name { get; set; }
-      public string Age { get; set; }
-        public string Role { get; set; }
+        private void clearLogin_Click(object sender, EventArgs e)
+        {
+            txtUsername.Clear();
+            txtPassword.Clear();
+            cmbxRoles.Text = "Select Role";
+        }
     }
 }

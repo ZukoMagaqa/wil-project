@@ -30,14 +30,14 @@
         {
             this.txtUsername = new System.Windows.Forms.RichTextBox();
             this.txtPassword = new System.Windows.Forms.RichTextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbxRoles = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.clearLogin = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -47,6 +47,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtUsername.ForeColor = System.Drawing.Color.Green;
             this.txtUsername.Location = new System.Drawing.Point(504, 211);
+            this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(320, 29);
             this.txtUsername.TabIndex = 0;
@@ -57,27 +58,29 @@
             this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtPassword.ForeColor = System.Drawing.Color.Green;
-            this.txtPassword.Location = new System.Drawing.Point(504, 303);
+            this.txtPassword.Location = new System.Drawing.Point(504, 281);
+            this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(311, 29);
+            this.txtPassword.Size = new System.Drawing.Size(320, 29);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.Text = "";
+            this.txtPassword.WordWrap = false;
             // 
-            // comboBox1
+            // cmbxRoles
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.Green;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbxRoles.BackColor = System.Drawing.Color.White;
+            this.cmbxRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxRoles.ForeColor = System.Drawing.Color.Green;
+            this.cmbxRoles.FormattingEnabled = true;
+            this.cmbxRoles.Items.AddRange(new object[] {
             "ADMIN",
             "SELLER"});
-            this.comboBox1.Location = new System.Drawing.Point(504, 137);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(320, 26);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.Text = "Select Role";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbxRoles.Location = new System.Drawing.Point(504, 137);
+            this.cmbxRoles.Name = "cmbxRoles";
+            this.cmbxRoles.Size = new System.Drawing.Size(320, 26);
+            this.cmbxRoles.TabIndex = 2;
+            this.cmbxRoles.Text = "Select Role";
+            this.cmbxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -102,7 +105,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Green;
-            this.label3.Location = new System.Drawing.Point(339, 303);
+            this.label3.Location = new System.Drawing.Point(339, 281);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 29);
             this.label3.TabIndex = 5;
@@ -133,25 +136,26 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.Green;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.LightGreen;
-            this.btnLogin.Location = new System.Drawing.Point(587, 371);
+            this.btnLogin.Location = new System.Drawing.Point(698, 334);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(154, 54);
+            this.btnLogin.Size = new System.Drawing.Size(126, 33);
             this.btnLogin.TabIndex = 8;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLoginClick);
             // 
-            // label7
+            // clearLogin
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(635, 428);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 18);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "CLEAR";
+            this.clearLogin.AutoSize = true;
+            this.clearLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearLogin.Location = new System.Drawing.Point(615, 341);
+            this.clearLogin.Name = "clearLogin";
+            this.clearLogin.Size = new System.Drawing.Size(62, 18);
+            this.clearLogin.TabIndex = 10;
+            this.clearLogin.Text = "CLEAR";
+            this.clearLogin.Click += new System.EventHandler(this.clearLogin_Click);
             // 
             // label6
             // 
@@ -172,14 +176,14 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(882, 519);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.clearLogin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbxRoles);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.ForeColor = System.Drawing.Color.Green;
@@ -195,14 +199,14 @@
 
         private System.Windows.Forms.RichTextBox txtUsername;
         private System.Windows.Forms.RichTextBox txtPassword;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbxRoles;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label clearLogin;
         private System.Windows.Forms.Label label6;
     }
 }
