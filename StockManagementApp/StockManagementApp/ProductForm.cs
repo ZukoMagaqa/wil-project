@@ -1,4 +1,5 @@
 ﻿using BackendlessAPI;
+using BackendlessAPI.Exception;
 using StockManagementApp.Models;
 using System;
 using System.Collections;
@@ -16,6 +17,7 @@ namespace StockManagementApp
     public partial class ProductForm : Form
     {
         Product _product = new Product();
+        IList<Product> _products;
         public ProductForm()
         {
             InitializeComponent();
@@ -45,29 +47,63 @@ namespace StockManagementApp
         {
             Product product = new Product();
 
-            product.Category = cmbBoxProduct.Text;
-            product.Name = txtProdName.Text;
-            product.Qauntity = Convert.ToInt32(txtProdQuantity.Text);
-            product.Price = Convert.ToDouble(txtProdPrice.Text);
-
-            if (product != null)
+            if (!string.IsNullOrEmpty(txtProdName.Text.Trim()) || Convert.ToInt32(txtProdPrice.Text) >= 0 || Convert.ToInt32(txtProdPrice.Text) >= 0 || cmbBoxProduct.Text != "Select Category")
             {
-                var prod = Backendless.Data.Of<Product>().Save(product);
+                product.Category = cmbBoxProduct.Text;
+                product.Name = txtProdName.Text;
+                product.Qauntity = Convert.ToInt32(txtProdQuantity.Text);
+                product.Price = Convert.ToDouble(txtProdPrice.Text);
 
-                update(prod);
-                
-                Clear();
+                if (product != null)
+                {
+                    var prod = Backendless.Data.Of<Product>().Save(product);
+
+                    MessageBox.Show("Successfully added a product");
+                    update(prod);
+
+                    Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please some field");
             }
         }
 
         private void Clear()
         {
-            
+            txtProdName.Clear();
+            txtProdPrice.Clear();
+            txtProdQuantity.Clear();
+            cmbBoxProduct.Text = "Select Category";
         }
 
         private void btnEditProductClick(object sender, EventArgs e)
         {
+            int rowindex = dtGrdProduct.CurrentCell.RowIndex;
+            if (rowindex == -1 && rowindex > _products.Count)
+            {
+                return;
+            }
+            else
+            {
+                Product prod = new Product();
 
+                prod.Name = txtProdName.Text.Trim();
+                prod.Price = Convert.ToDouble(txtProdPrice.Text);
+                prod.Qauntity = Convert.ToInt32(txtProdQuantity.Text);
+                prod.Category = cmbBoxProduct.Text.Trim();
+                prod.objectId = _products[rowindex].objectId;
+
+                //int index = lstBoxCategories.SelectedIndex;
+
+                //dtGrdProduct..Items.RemoveAt(index);
+                //lstBoxCategories.Items.Insert(index, String.Format(columns, truncate.Truncate(category.objectId, 5), category.Name, category.Description));
+
+                Backendless.Persistence.Of<Product>().Save(prod);
+                MessageBox.Show("Successfully updated product");
+                Clear();
+            }
         }
 
         private void btnSellerWinClick(object sender, EventArgs e)
@@ -95,6 +131,26 @@ namespace StockManagementApp
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
+
+            var loggedInUser = Backendless.UserService.LoggedInUserObjectId();
+            var catClause = "ownerId = '" + loggedInUser + "'";
+            var catQueryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(catClause);
+
+            var products = Backendless.Data.Of<Product>().Find(catQueryBuilder);
+            _products = products;
+
+            try
+            {
+                foreach (var product in products)
+                {
+                    update(product);
+                }
+            }
+            catch (BackendlessException ex)
+            {
+                MessageBox.Show(ex.BackendlessFault.Message);
+            }
+
             update(_product);
         }
 
@@ -122,18 +178,30 @@ namespace StockManagementApp
                 row.Add(product.Price);
                 dtGrdProduct.Rows.Add(row.ToArray());
 
-                //ADD BUTTON COLUMN
-                //DataGridViewButtonColumn button = new DataGridViewButtonColumn();
-                //button.HeaderText = "Click Me";
-                //button.Name = "myButton";
-                //button.Text = "Click Me";
-                //button.UseColumnTextForButtonValue = true;
-                //dtGrdProduct.Columns.Add(button);
-
                 dtGrdProduct.BorderStyle = BorderStyle.None;
                 dtGrdProduct.HorizontalScrollingOffset = 0;
             }
         }
 
+        private void dtGrdProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowindex = dtGrdProduct.CurrentCell.RowIndex;
+            int columnindex = dtGrdProduct.CurrentCell.ColumnIndex;
+
+            if (rowindex > _products.Count)
+            {
+                return;
+            }
+            else
+            {
+                var prod = _products[rowindex];
+
+                txtProdName.Text = prod.Name;
+                txtProdPrice.Text = prod.Price.ToString();
+                txtProdQuantity.Text = prod.Qauntity.ToString();
+                cmbBoxProduct.Text = prod.Category;
+            }
+
+        }
     }
 }
