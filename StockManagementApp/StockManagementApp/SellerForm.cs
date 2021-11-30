@@ -16,6 +16,7 @@ namespace StockManagementApp
     public partial class SellerForm : Form
     {
         string sellerColumns = "{0, 10}{1, 20}{2, 20}{3, 30}{4, 40}";
+        string valueCol = "{0, 5}{1, 20}{2, 15}{3, 20}{4, 30}";
         private string loggedInUser;
         Seller seller = new Seller();
         IList<Category> _categories = new List<Category>();
@@ -47,7 +48,7 @@ namespace StockManagementApp
 
                     foreach (var item in sellers)
                     {
-                        lstSeller.Items.Add(String.Format(sellerColumns, item.Email, "12",
+                        lstSeller.Items.Add(String.Format(valueCol, truncate.Truncate(item.Email, 10), "12",
                             item.GetProperty("name").ToString(), item.GetProperty("Phone").ToString(), 
                             item.GetProperty("Age").ToString()));
                     }
