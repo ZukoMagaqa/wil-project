@@ -59,7 +59,7 @@ namespace StockManagementApp
 
                 try
                 {
-                    user = Backendless.UserService.Login(username, password, true);
+                    user = Backendless.UserService.Login(username.Trim(), password.Trim(), true);
 
                     this.Hide();
 
@@ -70,8 +70,8 @@ namespace StockManagementApp
                             seller.Show();
                             break;
                         case "SELLER":
-                            this.Close();
-                            sellingForm.Close();
+                            this.Hide();
+                            sellingForm.Show();
                             break;
                         default:
                             break;
@@ -80,7 +80,7 @@ namespace StockManagementApp
                 catch (BackendlessException exception)
                 {
                     // login failed, to get the error code, use exception.Fault.FaultCode
-                    MessageBox.Show(exception.Message);
+                    MessageBox.Show("Sorry the ",exception.Message);
                 }
             }
             else

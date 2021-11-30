@@ -1,4 +1,6 @@
-﻿namespace StockManagementApp
+﻿using System.Windows.Controls;
+
+namespace StockManagementApp
 {
     partial class Form1
     {
@@ -39,6 +41,9 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.clearLogin = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -49,7 +54,7 @@
             this.txtUsername.Location = new System.Drawing.Point(504, 211);
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(320, 29);
+            this.txtUsername.Size = new System.Drawing.Size(219, 29);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.Text = "";
             // 
@@ -58,10 +63,10 @@
             this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtPassword.ForeColor = System.Drawing.Color.Green;
-            this.txtPassword.Location = new System.Drawing.Point(504, 281);
+            this.txtPassword.Location = new System.Drawing.Point(504, 254);
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(320, 29);
+            this.txtPassword.Size = new System.Drawing.Size(219, 29);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.Text = "";
             this.txtPassword.WordWrap = false;
@@ -69,15 +74,15 @@
             // cmbxRoles
             // 
             this.cmbxRoles.BackColor = System.Drawing.Color.White;
-            this.cmbxRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxRoles.Font = new System.Drawing.Font("Menlo", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxRoles.ForeColor = System.Drawing.Color.Green;
             this.cmbxRoles.FormattingEnabled = true;
             this.cmbxRoles.Items.AddRange(new object[] {
             "ADMIN",
             "SELLER"});
-            this.cmbxRoles.Location = new System.Drawing.Point(504, 137);
+            this.cmbxRoles.Location = new System.Drawing.Point(504, 175);
             this.cmbxRoles.Name = "cmbxRoles";
-            this.cmbxRoles.Size = new System.Drawing.Size(320, 26);
+            this.cmbxRoles.Size = new System.Drawing.Size(219, 21);
             this.cmbxRoles.TabIndex = 2;
             this.cmbxRoles.Text = "Select Role";
             this.cmbxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -103,44 +108,44 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Menlo", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Green;
-            this.label3.Location = new System.Drawing.Point(339, 281);
+            this.label3.Location = new System.Drawing.Point(406, 262);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 29);
+            this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "PASSWORD";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Menlo", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Green;
-            this.label4.Location = new System.Drawing.Point(345, 211);
+            this.label4.Location = new System.Drawing.Point(406, 219);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 29);
+            this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "USERNAME";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Menlo", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Green;
-            this.label5.Location = new System.Drawing.Point(579, 54);
+            this.label5.Location = new System.Drawing.Point(533, 93);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 44);
+            this.label5.Size = new System.Drawing.Size(82, 28);
             this.label5.TabIndex = 7;
             this.label5.Text = "LOGIN";
             // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.Green;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLogin.Font = new System.Drawing.Font("Menlo", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.LightGreen;
-            this.btnLogin.Location = new System.Drawing.Point(698, 334);
+            this.btnLogin.Location = new System.Drawing.Point(631, 293);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(126, 33);
+            this.btnLogin.Size = new System.Drawing.Size(92, 33);
             this.btnLogin.TabIndex = 8;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -149,10 +154,10 @@
             // clearLogin
             // 
             this.clearLogin.AutoSize = true;
-            this.clearLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearLogin.Location = new System.Drawing.Point(615, 341);
+            this.clearLogin.Font = new System.Drawing.Font("Menlo", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearLogin.Location = new System.Drawing.Point(568, 302);
             this.clearLogin.Name = "clearLogin";
-            this.clearLogin.Size = new System.Drawing.Size(62, 18);
+            this.clearLogin.Size = new System.Drawing.Size(47, 15);
             this.clearLogin.TabIndex = 10;
             this.clearLogin.Text = "CLEAR";
             this.clearLogin.Click += new System.EventHandler(this.clearLogin_Click);
@@ -162,15 +167,50 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Green;
-            this.label6.Location = new System.Drawing.Point(850, 9);
+            this.label6.Location = new System.Drawing.Point(859, -2);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 25);
             this.label6.TabIndex = 11;
             this.label6.Text = "x";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Menlo", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Green;
+            this.label7.Location = new System.Drawing.Point(406, 179);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Role";
+            // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.Color.MintCream;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(-38, 93);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(393, 286);
+            this.listBox1.TabIndex = 12;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Font = new System.Drawing.Font("Menlo", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Green;
+            this.label8.Location = new System.Drawing.Point(8, 219);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(334, 25);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "STOCK MANAGEMENT SYSTEM";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -178,7 +218,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.clearLogin);
             this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -186,9 +228,11 @@
             this.Controls.Add(this.cmbxRoles);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.listBox1);
             this.ForeColor = System.Drawing.Color.Green;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -208,6 +252,9 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label clearLogin;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label8;
     }
 }
 

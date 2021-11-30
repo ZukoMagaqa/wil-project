@@ -62,5 +62,16 @@ namespace StockManagementApp
             Application.Exit();
             BackendlessAPI.Backendless.UserService.Logout();
         }
+
+        private void btnLogoutClick(object sender, EventArgs e)
+        {
+            Application.Exit();
+            BackendlessAPI.Backendless.UserService.Logout();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

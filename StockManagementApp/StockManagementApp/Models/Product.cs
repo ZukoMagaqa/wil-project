@@ -8,10 +8,10 @@ namespace StockManagementApp.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        public int ObjectId { get; set; }
         public string Name { get; set; }
         public int Qauntity { get; set; }
-        public int Price { get; set; }
-        public List<Category> Categories { get; set; }
+        public double Price { get; set; }
+        public string Category { get; set; }
     }
 }
