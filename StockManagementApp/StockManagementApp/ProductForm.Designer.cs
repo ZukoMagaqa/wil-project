@@ -119,7 +119,7 @@
             "BEVERAGE"});
             this.cmbBoxProdLoad.Location = new System.Drawing.Point(510, 104);
             this.cmbBoxProdLoad.Name = "cmbBoxProdLoad";
-            this.cmbBoxProdLoad.Size = new System.Drawing.Size(154, 22);
+            this.cmbBoxProdLoad.Size = new System.Drawing.Size(154, 26);
             this.cmbBoxProdLoad.TabIndex = 15;
             this.cmbBoxProdLoad.Text = "Select Category";
             this.cmbBoxProdLoad.SelectedIndexChanged += new System.EventHandler(this.selectedCategoryIndex);
@@ -132,8 +132,10 @@
             this.dtGrdProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGrdProduct.Location = new System.Drawing.Point(330, 130);
             this.dtGrdProduct.Name = "dtGrdProduct";
+            this.dtGrdProduct.RowHeadersWidth = 51;
             this.dtGrdProduct.Size = new System.Drawing.Size(432, 209);
             this.dtGrdProduct.TabIndex = 14;
+            this.dtGrdProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdProduct_CellClick);
             this.dtGrdProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClickIndexChanged);
             // 
             // button4
@@ -182,7 +184,7 @@
             this.label7.ForeColor = System.Drawing.Color.Green;
             this.label7.Location = new System.Drawing.Point(47, 243);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 19);
+            this.label7.Size = new System.Drawing.Size(114, 24);
             this.label7.TabIndex = 10;
             this.label7.Text = "CATEGORY";
             // 
@@ -202,7 +204,7 @@
             "BEVERAGE"});
             this.cmbBoxProduct.Location = new System.Drawing.Point(150, 241);
             this.cmbBoxProduct.Name = "cmbBoxProduct";
-            this.cmbBoxProduct.Size = new System.Drawing.Size(174, 26);
+            this.cmbBoxProduct.Size = new System.Drawing.Size(174, 30);
             this.cmbBoxProduct.TabIndex = 9;
             this.cmbBoxProduct.Text = "Select Category";
             this.cmbBoxProduct.SelectedIndexChanged += new System.EventHandler(this.cmbBoxProducts_SelectedIndexChanged);
@@ -214,7 +216,7 @@
             this.label6.ForeColor = System.Drawing.Color.Green;
             this.label6.Location = new System.Drawing.Point(47, 176);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 19);
+            this.label6.Size = new System.Drawing.Size(114, 24);
             this.label6.TabIndex = 8;
             this.label6.Text = "QUANTITY";
             // 
@@ -225,7 +227,7 @@
             this.label5.ForeColor = System.Drawing.Color.Green;
             this.label5.Location = new System.Drawing.Point(47, 208);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 19);
+            this.label5.Size = new System.Drawing.Size(75, 24);
             this.label5.TabIndex = 7;
             this.label5.Text = "PRICE";
             // 
@@ -236,7 +238,7 @@
             this.label4.ForeColor = System.Drawing.Color.Green;
             this.label4.Location = new System.Drawing.Point(47, 135);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 19);
+            this.label4.Size = new System.Drawing.Size(62, 24);
             this.label4.TabIndex = 6;
             this.label4.Text = "NAME";
             // 
@@ -277,7 +279,7 @@
             this.label1.ForeColor = System.Drawing.Color.Green;
             this.label1.Location = new System.Drawing.Point(298, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 24);
+            this.label1.Size = new System.Drawing.Size(238, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "MANAGE PRODUCTS";
             // 
@@ -314,7 +316,7 @@
             this.label2.ForeColor = System.Drawing.Color.Green;
             this.label2.Location = new System.Drawing.Point(1788, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 18);
+            this.label2.Size = new System.Drawing.Size(21, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "x";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -326,13 +328,13 @@
             this.label9.ForeColor = System.Drawing.Color.Green;
             this.label9.Location = new System.Drawing.Point(960, -2);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(24, 25);
+            this.label9.Size = new System.Drawing.Size(28, 31);
             this.label9.TabIndex = 20;
             this.label9.Text = "x";
             // 
             // ProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(985, 580);
