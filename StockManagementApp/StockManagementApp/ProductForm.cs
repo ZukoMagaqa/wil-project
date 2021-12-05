@@ -1,4 +1,5 @@
 ﻿using BackendlessAPI;
+using BackendlessAPI.Exception;
 using StockManagementApp.Models;
 using System;
 using System.Collections;
@@ -16,6 +17,7 @@ namespace StockManagementApp
     public partial class ProductForm : Form
     {
         Product _product = new Product();
+        IList<Product> _products;
         public ProductForm()
         {
             InitializeComponent();
@@ -95,7 +97,23 @@ namespace StockManagementApp
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            update(_product);
+            var loggedInUser = Backendless.UserService.LoggedInUserObjectId();
+            var catClause = "ownerId = '" + loggedInUser + "'";
+            var catQueryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(catClause);
+
+            try
+            {
+                _products = Backendless.Data.Of<Product>().Find(catQueryBuilder);
+
+                foreach (var product in _products)
+                {
+                    update(product);
+                }
+            }
+            catch (BackendlessException ex)
+            {
+                MessageBox.Show(ex.BackendlessFault.Message);
+            }
         }
 
         public void update(Product product)
@@ -108,7 +126,7 @@ namespace StockManagementApp
             dtGrdProduct.Columns[3].Name = "Price";
 
 
-            if (product.Name == null && product.Qauntity == 0)
+            if (product == null)
             {
                 return;
             }
@@ -122,18 +140,32 @@ namespace StockManagementApp
                 row.Add(product.Price);
                 dtGrdProduct.Rows.Add(row.ToArray());
 
-                //ADD BUTTON COLUMN
-                //DataGridViewButtonColumn button = new DataGridViewButtonColumn();
-                //button.HeaderText = "Click Me";
-                //button.Name = "myButton";
-                //button.Text = "Click Me";
-                //button.UseColumnTextForButtonValue = true;
-                //dtGrdProduct.Columns.Add(button);
-
                 dtGrdProduct.BorderStyle = BorderStyle.None;
                 dtGrdProduct.HorizontalScrollingOffset = 0;
             }
         }
 
+        private void cellClickIndexChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if(e.RowIndex < _products.Count)
+            {
+                var product = _products[e.RowIndex];
+
+
+                if (product != null)
+                {
+                    // use the backendless object to populate the textbox.
+                    txtProdName.Text = product.Name;
+                    txtProdPrice.Text = product.Price.ToString();
+                    txtProdQuantity.Text = product.Qauntity.ToString();
+                    cmbBoxProduct.Text = product.Category;
+                }
+                else
+                {
+                    txtProdName.Text = "NO DATA";
+                }
+            }
+        }
     }
 }

@@ -41,8 +41,6 @@ namespace StockManagementApp
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lstBoxSellerH = new System.Windows.Forms.ListBox();
-            this.lstSeller = new System.Windows.Forms.ListBox();
             this.txtSellerPassword = new System.Windows.Forms.RichTextBox();
             this.btnEditSeller = new System.Windows.Forms.Button();
             this.btnAddSeller = new System.Windows.Forms.Button();
@@ -57,7 +55,9 @@ namespace StockManagementApp
             this.txtSellerName = new System.Windows.Forms.RichTextBox();
             this.txtSellerId = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtGrdSeller = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGrdSeller)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -136,8 +136,7 @@ namespace StockManagementApp
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel1.Controls.Add(this.lstBoxSellerH);
-            this.panel1.Controls.Add(this.lstSeller);
+            this.panel1.Controls.Add(this.dtGrdSeller);
             this.panel1.Controls.Add(this.txtSellerPassword);
             this.panel1.Controls.Add(this.btnEditSeller);
             this.panel1.Controls.Add(this.btnAddSeller);
@@ -157,23 +156,6 @@ namespace StockManagementApp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(764, 480);
             this.panel1.TabIndex = 1;
-            // 
-            // lstBoxSellerH
-            // 
-            this.lstBoxSellerH.FormattingEnabled = true;
-            this.lstBoxSellerH.Location = new System.Drawing.Point(384, 87);
-            this.lstBoxSellerH.Name = "lstBoxSellerH";
-            this.lstBoxSellerH.Size = new System.Drawing.Size(347, 17);
-            this.lstBoxSellerH.TabIndex = 19;
-            // 
-            // lstSeller
-            // 
-            this.lstSeller.FormattingEnabled = true;
-            this.lstSeller.Location = new System.Drawing.Point(384, 103);
-            this.lstSeller.Name = "lstSeller";
-            this.lstSeller.Size = new System.Drawing.Size(347, 225);
-            this.lstSeller.TabIndex = 18;
-            this.lstSeller.SelectedIndexChanged += new System.EventHandler(this.lstSeller_SelectedIndexChanged);
             // 
             // txtSellerPassword
             // 
@@ -330,6 +312,17 @@ namespace StockManagementApp
             this.label1.TabIndex = 0;
             this.label1.Text = "MANAGE SELLER";
             // 
+            // dtGrdSeller
+            // 
+            this.dtGrdSeller.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dtGrdSeller.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtGrdSeller.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGrdSeller.Location = new System.Drawing.Point(362, 83);
+            this.dtGrdSeller.Name = "dtGrdSeller";
+            this.dtGrdSeller.Size = new System.Drawing.Size(385, 227);
+            this.dtGrdSeller.TabIndex = 18;
+            this.dtGrdSeller.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClickIndexChanged);
+            // 
             // SellerForm
             // 
             this.AllowDrop = true;
@@ -352,6 +345,7 @@ namespace StockManagementApp
             this.Load += new System.EventHandler(this.SellerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGrdSeller)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,8 +360,6 @@ namespace StockManagementApp
         private System.Windows.Forms.Button button1;
         private System.Windows.Controls.Border myBorder1;
         private Panel panel1;
-        private ListBox lstBoxSellerH;
-        private ListBox lstSeller;
         private RichTextBox txtSellerPassword;
         private Button btnEditSeller;
         private Button btnAddSeller;
@@ -382,5 +374,6 @@ namespace StockManagementApp
         private RichTextBox txtSellerName;
         private RichTextBox txtSellerId;
         private Label label1;
+        private DataGridView dtGrdSeller;
     }
 }
