@@ -16,7 +16,6 @@ namespace StockManagementApp
 {
     public partial class SellerForm : Form
     {
-        private string loggedInUser;
         Seller seller = new Seller();
         IList<Category> _categories = new List<Category>();
         TruncateExt truncate = new TruncateExt();
@@ -36,7 +35,7 @@ namespace StockManagementApp
             {
                 try
                 {
-                    _sellers = getSellers();
+                   getSellers();
                 }
                 catch (BackendlessException ex)
                 {
@@ -51,14 +50,16 @@ namespace StockManagementApp
             var whereClause = "role = 'SELLER'";
             var queryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(whereClause);
 
-            var sellers = Backendless.Data.Of<BackendlessUser>().Find(queryBuilder);
+            _sellers = Backendless.Data.Of<BackendlessUser>().Find(queryBuilder);
 
-            foreach (var item in sellers)
+            dtGrdSeller.Rows.Clear();
+
+            foreach (var item in _sellers)
             {
                 update(item);
             }
 
-            return sellers;
+            return _sellers;
         }
 
 
@@ -83,7 +84,6 @@ namespace StockManagementApp
         private void sellerCloseClick(object sender, EventArgs e)
         {
             Application.Exit();
-            BackendlessAPI.Backendless.UserService.Logout();
         }
 
         private void btnLogoutClick(object sender, EventArgs e)
@@ -111,18 +111,10 @@ namespace StockManagementApp
 
                 var results = Backendless.UserService.Register(user);
 
-                DataTable table = new DataTable();
-                table.Rows.Add(
-                    txtSellerId.Text, 
-                    txtSellerPassword.Text, 
-                    txtSellerName.Text, 
-                    txtSellerAge.Text, 
-                    txtSellerPhone.Text, 
-                    "Role");
-                dtGrdSeller.DataSource = table;
+                getSellers();
                 clear();
 
-                MessageBox.Show("Successfully Added ", results.GetProperty("Name").ToString());
+                MessageBox.Show("Successfully Added ", results.GetProperty("name").ToString());
             }
             catch (Exception ex)
             {
@@ -214,10 +206,7 @@ namespace StockManagementApp
                 row.Add(user.GetProperty("phone").ToString());
                 row.Add(user.GetProperty("role").ToString());
 
-                if (dtGrdSeller.Rows.Count != row.Count)
-                {
-                    dtGrdSeller.Rows.Add(row.ToArray());;
-                }
+                dtGrdSeller.Rows.Add(row.ToArray());;
 
                 dtGrdSeller.BorderStyle = BorderStyle.None;
                 dtGrdSeller.HorizontalScrollingOffset = 0;

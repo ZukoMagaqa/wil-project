@@ -81,6 +81,7 @@ namespace StockManagementApp
                     var prod = Backendless.Data.Of<Product>().Save(product);
 
                     MessageBox.Show("Successfully added a product");
+                    LoadProducts();
                     dtGrdProduct.Update();
 
                     Clear();
@@ -121,16 +122,17 @@ namespace StockManagementApp
                 
                 MessageBox.Show("Successfully updated product");
                 Backendless.Persistence.Of<Product>().Save(prod);
-                dtGrdProduct.Rows.RemoveAt(rowindex);
+                LoadProducts();
+                //dtGrdProduct.Rows.RemoveAt(rowindex);
 
-                DataGridViewRow newDataRow = dtGrdProduct.Rows[rowindex];
+                //DataGridViewRow newDataRow = dtGrdProduct.Rows[rowindex];
                 
-                newDataRow.Cells[0].Value = txtProdName.Text;
-                newDataRow.Cells[1].Value = txtProdQuantity.Text;
-                newDataRow.Cells[3].Value = txtProdPrice.Text;
-                newDataRow.Cells[2].Value = cmbBoxProduct.Text;
+                //newDataRow.Cells[0].Value = txtProdName.Text;
+                //newDataRow.Cells[1].Value = txtProdQuantity.Text;
+                //newDataRow.Cells[3].Value = txtProdPrice.Text;
+                //newDataRow.Cells[2].Value = cmbBoxProduct.Text;
                 
-                _products.Insert(rowindex, prod);
+                //_products.Insert(rowindex, prod);
                 dtGrdProduct.Update();
 
                 Clear();
@@ -173,8 +175,9 @@ namespace StockManagementApp
 
             try
             {
-                _products = Backendless.Data.Of<Product>().Find(catQueryBuilder);
 
+                _products = Backendless.Data.Of<Product>().Find(catQueryBuilder);
+                dtGrdProduct.Rows.Clear();
                 foreach (var product in _products)
                 {
                     updateRow(product);
@@ -219,6 +222,8 @@ namespace StockManagementApp
 
             if(e.RowIndex < _products.Count && e.RowIndex != -1)
             {
+                LoadProducts();
+
                 var product = _products[e.RowIndex];
 
 

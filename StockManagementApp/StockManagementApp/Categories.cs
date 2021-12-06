@@ -31,6 +31,11 @@ namespace StockManagementApp
         }
         private void Categories_Load(object sender, EventArgs e)
         {
+            LoadCat();
+        }
+
+        private void LoadCat()
+        {
             var loggedInUser = Backendless.UserService.LoggedInUserObjectId();
             var catClause = "ownerId = '" + loggedInUser + "'";
             var catQueryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(catClause);
@@ -43,6 +48,7 @@ namespace StockManagementApp
 
             try
             {
+                lstBoxCategories.Items.Clear();
                 foreach (var category in categories)
                 {
                     lstBoxCategories.Items.Add(String.Format(columns, truncate.Truncate(category.objectId, 5, "..."), category.Name, category.Description));
@@ -83,7 +89,8 @@ namespace StockManagementApp
             {
                 var cat = Backendless.Persistence.Of<Category>().Save(category);
 
-                lstBoxCategories.Items.Add(String.Format(columns, truncate.Truncate(cat.objectId, 5), cat.Name, cat.Description));
+                //lstBoxCategories.Items.Add(String.Format(columns, truncate.Truncate(cat.objectId, 5), cat.Name, cat.Description));
+                LoadCat();
                 Clear();
             }
         }
