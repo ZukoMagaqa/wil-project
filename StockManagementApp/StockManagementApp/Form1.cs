@@ -61,20 +61,29 @@ namespace StockManagementApp
                 {
                     user = Backendless.UserService.Login(username.Trim(), password.Trim(), true);
 
-                    this.Hide();
+                    var role = user.GetProperty("role").ToString();
 
-                    switch (user.GetProperty("role").ToString())
+                    if (role == selectedRole)
                     {
-                        case "ADMIN":
-                            this.Hide();
-                            seller.Show();
-                            break;
-                        case "SELLER":
-                            this.Hide();
-                            sellingForm.Show();
-                            break;
-                        default:
-                            break;
+                        switch (role)
+                        {
+                            case "ADMIN":
+                                this.Hide();
+                                seller.Show();
+                                break;
+                            case "SELLER":
+                                this.Hide();
+                                sellingForm.Show();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("User role does not match or does not have that role");
+                        this.Show();
+                        Backendless.UserService.Logout();
                     }
                 }
                 catch (BackendlessException exception)

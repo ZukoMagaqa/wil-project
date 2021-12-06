@@ -16,12 +16,11 @@ namespace StockManagementApp
 {
     public partial class SellerForm : Form
     {
-        string sellerColumns = "{0, 10}{1, 20}{2, 20}{3, 30}{4, 40}";
-        string valueCol = "{0, 5}{1, 20}{2, 15}{3, 20}{4, 30}";
         private string loggedInUser;
         Seller seller = new Seller();
         IList<Category> _categories = new List<Category>();
         TruncateExt truncate = new TruncateExt();
+        private IList<BackendlessUser> _sellers;
 
         public SellerForm()
         {
@@ -35,30 +34,16 @@ namespace StockManagementApp
 
             if (isValidLogin())
             {
-                loggedInUser = Backendless.UserService.LoggedInUserObjectId();
-                var catClause = "ownerId = '" + loggedInUser + "'";
-
                 try
                 {
-                    var whereClause = "role = 'SELLER'";
-                    var queryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(whereClause);
-
-                    var sellers = Backendless.Data.Of<BackendlessUser>().Find(queryBuilder);
-
-                    foreach (var item in sellers)
-                    {
-                        update(item);
-                    }
+                    _sellers = getSellers();
                 }
                 catch (BackendlessException ex)
                 {
                     MessageBox.Show(ex.BackendlessFault.Message);
                 }
 
-                
             }
-
-            
         }
 
         public IList<BackendlessUser> getSellers()
@@ -66,7 +51,12 @@ namespace StockManagementApp
             var whereClause = "role = 'SELLER'";
             var queryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(whereClause);
 
-            var sellers = BackendlessAPI.Backendless.Data.Of<BackendlessUser>().Find(queryBuilder);
+            var sellers = Backendless.Data.Of<BackendlessUser>().Find(queryBuilder);
+
+            foreach (var item in sellers)
+            {
+                update(item);
+            }
 
             return sellers;
         }
@@ -121,8 +111,15 @@ namespace StockManagementApp
 
                 var results = Backendless.UserService.Register(user);
 
-                update(results);
-               
+                DataTable table = new DataTable();
+                table.Rows.Add(
+                    txtSellerId.Text, 
+                    txtSellerPassword.Text, 
+                    txtSellerName.Text, 
+                    txtSellerAge.Text, 
+                    txtSellerPhone.Text, 
+                    "Role");
+                dtGrdSeller.DataSource = table;
                 clear();
 
                 MessageBox.Show("Successfully Added ", results.GetProperty("Name").ToString());
@@ -135,7 +132,49 @@ namespace StockManagementApp
         }
         private void btnEditSeller_Click(object senderr, EventArgs e)
         {
+            int rowindex = dtGrdSeller.CurrentCell.RowIndex;
+            if (rowindex == -1 && rowindex < _sellers.Count)
+            {
+                return;
+            }
+            else
+            {
 
+                seller.Name = txtSellerName.Text.Trim();
+                seller.Email = txtSellerId.Text.Trim();
+                seller.Age = Convert.ToInt32(txtSellerAge.Text);
+                seller.MyPassword = txtSellerPassword.Text.Trim();
+                seller.Phone = txtSellerPhone.Text;
+                seller.ObjectId = _sellers[rowindex].ObjectId;
+
+                if(txtSellerPassword.Text != _sellers[rowindex].GetProperty("mypassword").ToString())
+                {
+                    Backendless.UserService.RestorePassword(seller.Email);
+                }
+
+                var whereClause = "objectId = '" + seller.ObjectId + "'";
+
+                MessageBox.Show("Successfully updated seller");
+                Dictionary<string, object> dic = new Dictionary<string, object>();
+
+                dic.Add("name", seller.Name);
+                dic.Add("age", seller.Age);
+                dic.Add("phone", seller.Phone);
+                dic.Add("mypassword", seller.MyPassword);
+
+                Backendless.Persistence.Of<BackendlessUser>().Update(whereClause, dic);
+
+                DataGridViewRow newDataRow = dtGrdSeller.Rows[rowindex];
+                newDataRow.Cells[0].Value = txtSellerId.Text;
+                newDataRow.Cells[1].Value = txtSellerPassword.Text;
+                newDataRow.Cells[2].Value = txtSellerName.Text;
+                newDataRow.Cells[3].Value = txtSellerAge.Text;
+                newDataRow.Cells[4].Value = txtSellerPhone.Text;
+                newDataRow.Cells[5].Value = _sellers[rowindex].GetProperty("role").ToString();
+                dtGrdSeller.Update();
+                clear();       
+            }    
+                                 
         }
 
         private void clear()
@@ -146,8 +185,6 @@ namespace StockManagementApp
             txtSellerPassword.Clear();
             txtSellerPhone.Clear();
         }
-
-       
 
         public void update(BackendlessUser user)
         {
@@ -176,7 +213,11 @@ namespace StockManagementApp
                 row.Add(user.GetProperty("age").ToString());
                 row.Add(user.GetProperty("phone").ToString());
                 row.Add(user.GetProperty("role").ToString());
-                dtGrdSeller.Rows.Add(row.ToArray());
+
+                if (dtGrdSeller.Rows.Count != row.Count)
+                {
+                    dtGrdSeller.Rows.Add(row.ToArray());;
+                }
 
                 dtGrdSeller.BorderStyle = BorderStyle.None;
                 dtGrdSeller.HorizontalScrollingOffset = 0;
@@ -185,10 +226,12 @@ namespace StockManagementApp
 
         private void cellClickIndexChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
-            if(e.RowIndex < getSellers().Count)
+
+            int rowindex = dtGrdSeller.CurrentCell.RowIndex;
+
+            if (rowindex != -1 && rowindex < _sellers.Count)
             {
-                var user = getSellers()[e.RowIndex];
+                var user = _sellers[rowindex];
 
 
                 if (user != null)
@@ -204,6 +247,36 @@ namespace StockManagementApp
                 {
                     txtSellerName.Text = "NO DATA";
                 }
+            }
+            else
+            {
+                clear();
+            }
+        }
+
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+            int rowindex = dtGrdSeller.CurrentCell.RowIndex;
+
+            if (rowindex == -1 && rowindex < _sellers.Count)
+            {
+                return;
+            }
+            else
+            {
+                seller.ObjectId = _sellers[rowindex].ObjectId;
+
+
+                MessageBox.Show("Successfully deleted seller");
+                var whereClasue = "objectId = '" + seller.ObjectId + "'";
+
+                var catQueryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(whereClasue);
+                Backendless.Persistence.Of<BackendlessUser>().Remove(whereClasue);
+
+                dtGrdSeller.Rows.RemoveAt(rowindex);
+                _sellers.RemoveAt(rowindex);
+                dtGrdSeller.Update();
+                clear();
             }
         }
     }

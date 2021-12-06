@@ -95,7 +95,7 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.Green;
-            this.button2.Location = new System.Drawing.Point(670, 102);
+            this.button2.Location = new System.Drawing.Point(682, 102);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 26);
             this.button2.TabIndex = 3;
@@ -130,12 +130,11 @@
             this.dtGrdProduct.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dtGrdProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtGrdProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGrdProduct.Location = new System.Drawing.Point(330, 130);
+            this.dtGrdProduct.Location = new System.Drawing.Point(342, 134);
             this.dtGrdProduct.Name = "dtGrdProduct";
             this.dtGrdProduct.RowHeadersWidth = 51;
             this.dtGrdProduct.Size = new System.Drawing.Size(432, 209);
             this.dtGrdProduct.TabIndex = 14;
-            this.dtGrdProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdProduct_CellClick);
             this.dtGrdProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClickIndexChanged);
             // 
             // button4
@@ -180,18 +179,18 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Menlo", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Menlo", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Green;
-            this.label7.Location = new System.Drawing.Point(47, 243);
+            this.label7.Location = new System.Drawing.Point(23, 240);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 24);
+            this.label7.Size = new System.Drawing.Size(97, 20);
             this.label7.TabIndex = 10;
             this.label7.Text = "CATEGORY";
             // 
             // cmbBoxProduct
             // 
             this.cmbBoxProduct.BackColor = System.Drawing.Color.White;
-            this.cmbBoxProduct.Font = new System.Drawing.Font("Menlo", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBoxProduct.Font = new System.Drawing.Font("Menlo", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBoxProduct.ForeColor = System.Drawing.Color.Green;
             this.cmbBoxProduct.FormattingEnabled = true;
             this.cmbBoxProduct.Items.AddRange(new object[] {
@@ -204,7 +203,7 @@
             "BEVERAGE"});
             this.cmbBoxProduct.Location = new System.Drawing.Point(150, 241);
             this.cmbBoxProduct.Name = "cmbBoxProduct";
-            this.cmbBoxProduct.Size = new System.Drawing.Size(174, 30);
+            this.cmbBoxProduct.Size = new System.Drawing.Size(174, 28);
             this.cmbBoxProduct.TabIndex = 9;
             this.cmbBoxProduct.Text = "Select Category";
             this.cmbBoxProduct.SelectedIndexChanged += new System.EventHandler(this.cmbBoxProducts_SelectedIndexChanged);
@@ -212,33 +211,33 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Menlo", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Menlo", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Green;
-            this.label6.Location = new System.Drawing.Point(47, 176);
+            this.label6.Location = new System.Drawing.Point(23, 173);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 24);
+            this.label6.Size = new System.Drawing.Size(97, 20);
             this.label6.TabIndex = 8;
             this.label6.Text = "QUANTITY";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Menlo", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Menlo", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Green;
-            this.label5.Location = new System.Drawing.Point(47, 208);
+            this.label5.Location = new System.Drawing.Point(23, 205);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 24);
+            this.label5.Size = new System.Drawing.Size(64, 20);
             this.label5.TabIndex = 7;
             this.label5.Text = "PRICE";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Menlo", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Menlo", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Green;
-            this.label4.Location = new System.Drawing.Point(47, 135);
+            this.label4.Location = new System.Drawing.Point(23, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 24);
+            this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "NAME";
             // 

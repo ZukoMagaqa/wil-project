@@ -30,7 +30,29 @@ namespace StockManagementApp
 
         private void btnDeleteProductClick(object sender, EventArgs e)
         {
+            int rowindex = dtGrdProduct.CurrentCell.RowIndex;
 
+            if (rowindex == -1 && rowindex < _products.Count)
+            {
+                return;
+            }
+            else
+            {
+                _product.objectId = _products[rowindex].objectId;
+
+
+                MessageBox.Show("Successfully deleted product");
+                var whereClasue = "objectId = '" + _product.objectId + "'";
+
+                var catQueryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(whereClasue);
+                Backendless.Persistence.Of<Product>().Remove(whereClasue);
+
+                dtGrdProduct.Rows.RemoveAt(rowindex);
+                _products.RemoveAt(rowindex);
+                dtGrdProduct.Update();
+                
+                Clear();
+            }
         }
 
         private void btnRefreshClick(object sender, EventArgs e)
@@ -59,7 +81,7 @@ namespace StockManagementApp
                     var prod = Backendless.Data.Of<Product>().Save(product);
 
                     MessageBox.Show("Successfully added a product");
-                    update(prod);
+                    dtGrdProduct.Update();
 
                     Clear();
                 }
@@ -81,7 +103,7 @@ namespace StockManagementApp
         private void btnEditProductClick(object sender, EventArgs e)
         {
             int rowindex = dtGrdProduct.CurrentCell.RowIndex;
-            if (rowindex == -1 && rowindex > _products.Count)
+            if (rowindex == -1 && rowindex < _products.Count)
             {
                 return;
             }
@@ -95,13 +117,22 @@ namespace StockManagementApp
                 prod.Category = cmbBoxProduct.Text.Trim();
                 prod.objectId = _products[rowindex].objectId;
 
-                //int index = lstBoxCategories.SelectedIndex;
-
-                //dtGrdProduct..Items.RemoveAt(index);
-                //lstBoxCategories.Items.Insert(index, String.Format(columns, truncate.Truncate(category.objectId, 5), category.Name, category.Description));
-
-                Backendless.Persistence.Of<Product>().Save(prod);
+                
+                
                 MessageBox.Show("Successfully updated product");
+                Backendless.Persistence.Of<Product>().Save(prod);
+                dtGrdProduct.Rows.RemoveAt(rowindex);
+
+                DataGridViewRow newDataRow = dtGrdProduct.Rows[rowindex];
+                
+                newDataRow.Cells[0].Value = txtProdName.Text;
+                newDataRow.Cells[1].Value = txtProdQuantity.Text;
+                newDataRow.Cells[3].Value = txtProdPrice.Text;
+                newDataRow.Cells[2].Value = cmbBoxProduct.Text;
+                
+                _products.Insert(rowindex, prod);
+                dtGrdProduct.Update();
+
                 Clear();
             }
         }
@@ -131,7 +162,11 @@ namespace StockManagementApp
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            update(_product);
+            LoadProducts();
+        }
+
+        public void LoadProducts()
+        {
             var loggedInUser = Backendless.UserService.LoggedInUserObjectId();
             var catClause = "ownerId = '" + loggedInUser + "'";
             var catQueryBuilder = BackendlessAPI.Persistence.DataQueryBuilder.Create().SetWhereClause(catClause);
@@ -142,7 +177,7 @@ namespace StockManagementApp
 
                 foreach (var product in _products)
                 {
-                    update(product);
+                    updateRow(product);
                 }
             }
             catch (BackendlessException ex)
@@ -151,7 +186,7 @@ namespace StockManagementApp
             }
         }
 
-        public void update(Product product)
+        public void updateRow(Product product)
         {
             //ADD COLUMN
             dtGrdProduct.ColumnCount = 4;
@@ -179,31 +214,10 @@ namespace StockManagementApp
                 dtGrdProduct.HorizontalScrollingOffset = 0;
             }
         }
-
-        private void dtGrdProduct_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int rowindex = dtGrdProduct.CurrentCell.RowIndex;
-            int columnindex = dtGrdProduct.CurrentCell.ColumnIndex;
-
-            if (rowindex > _products.Count)
-            {
-                return;
-            }
-            else
-            {
-                var prod = _products[rowindex];
-
-                txtProdName.Text = prod.Name;
-                txtProdPrice.Text = prod.Price.ToString();
-                txtProdQuantity.Text = prod.Qauntity.ToString();
-                cmbBoxProduct.Text = prod.Category;
-            }
-
-        }
         private void cellClickIndexChanged(object sender, DataGridViewCellEventArgs e)
         {
 
-            if(e.RowIndex < _products.Count)
+            if(e.RowIndex < _products.Count && e.RowIndex != -1)
             {
                 var product = _products[e.RowIndex];
 
@@ -220,6 +234,10 @@ namespace StockManagementApp
                 {
                     txtProdName.Text = "NO DATA";
                 }
+            }
+            else
+            {
+                Clear();
             }
         }
     }
