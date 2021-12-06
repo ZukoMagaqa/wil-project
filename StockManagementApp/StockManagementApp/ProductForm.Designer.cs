@@ -127,7 +127,8 @@
             // dtGrdProduct
             // 
             this.dtGrdProduct.AllowUserToOrderColumns = true;
-            this.dtGrdProduct.BackgroundColor = System.Drawing.Color.White;
+            this.dtGrdProduct.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dtGrdProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtGrdProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGrdProduct.Location = new System.Drawing.Point(330, 130);
             this.dtGrdProduct.Name = "dtGrdProduct";
@@ -135,6 +136,7 @@
             this.dtGrdProduct.Size = new System.Drawing.Size(432, 209);
             this.dtGrdProduct.TabIndex = 14;
             this.dtGrdProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdProduct_CellClick);
+            this.dtGrdProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClickIndexChanged);
             // 
             // button4
             // 

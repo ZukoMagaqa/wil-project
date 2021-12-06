@@ -2,6 +2,7 @@
 using BackendlessAPI.Exception;
 using StockManagementApp.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,14 +31,12 @@ namespace StockManagementApp
 
         private void SellerForm_Load(object sender, EventArgs e)
         {
-            lstBoxSellerH.Items.Add(String.Format(sellerColumns, "ID", "Password", "Name", "Phone", "Age"));
             Application.DoEvents();
 
             if (isValidLogin())
             {
                 loggedInUser = Backendless.UserService.LoggedInUserObjectId();
                 var catClause = "ownerId = '" + loggedInUser + "'";
-
 
                 try
                 {
@@ -48,9 +47,7 @@ namespace StockManagementApp
 
                     foreach (var item in sellers)
                     {
-                        lstSeller.Items.Add(String.Format(valueCol, truncate.Truncate(item.Email, 10), "12",
-                            item.GetProperty("name").ToString(), item.GetProperty("Phone").ToString(), 
-                            item.GetProperty("Age").ToString()));
+                        update(item);
                     }
                 }
                 catch (BackendlessException ex)
@@ -116,16 +113,16 @@ namespace StockManagementApp
             {
                 user.Email = txtSellerId.Text;
                 user.Password = txtSellerPassword.Text;
-                user.SetProperty("Age", UInt16.Parse(txtSellerAge.Text));
-                user.SetProperty("Phone", txtSellerPhone.Text);
-                user.SetProperty("Name", txtSellerName.Text);
-                user.SetProperty("Role", "SELLER");
+                user.SetProperty("age", UInt16.Parse(txtSellerAge.Text));
+                user.SetProperty("phone", txtSellerPhone.Text);
+                user.SetProperty("name", txtSellerName.Text);
+                user.SetProperty("role", "SELLER");
+                user.SetProperty("mypassword", txtSellerPassword.Text);
 
                 var results = Backendless.UserService.Register(user);
-                lstSeller.Items.Add(
-                    String.Format(sellerColumns, user.Email, user.Password, user.GetProperty("Name"), 
-                    user.GetProperty("Phone"), user.GetProperty("Age")));
-                //lstSeller.Items.Add(results);
+
+                update(results);
+               
                 clear();
 
                 MessageBox.Show("Successfully Added ", results.GetProperty("Name").ToString());
@@ -150,23 +147,63 @@ namespace StockManagementApp
             txtSellerPhone.Clear();
         }
 
-        private void lstSeller_SelectedIndexChanged(object sender, EventArgs e)
+       
+
+        public void update(BackendlessUser user)
         {
-            var user = getSellers()[lstSeller.SelectedIndex];
+            //ADD COLUMN
+            dtGrdSeller.ColumnCount = 6;
+
+            dtGrdSeller.Columns[0].Name = "Email";
+            dtGrdSeller.Columns[1].Name = "Password";
+            dtGrdSeller.Columns[2].Name = "Name";
+            dtGrdSeller.Columns[3].Name = "Age";
+            dtGrdSeller.Columns[4].Name = "Phone";
+            dtGrdSeller.Columns[5].Name = "Role";
 
 
-            if (user != null)
+            if (user == null)
             {
-                // use the backendless object to populate the textbox.
-                txtSellerAge.Text = user.GetProperty("Age").ToString();
-                txtSellerName.Text = user.GetProperty("name").ToString();
-                txtSellerPhone.Text = user.GetProperty("Phone").ToString();
-                txtSellerId.Text = user.ObjectId;
-                txtSellerPassword.Text = user.Password;
+                return;
             }
             else
             {
-                txtSellerName.Text = "NO DATA";
+                //ADD ROWS
+                ArrayList row = new ArrayList();
+                row.Add(user.Email);
+                row.Add(user.GetProperty("mypassword").ToString() != null ? user.GetProperty("mypassword").ToString() : "");
+                row.Add(user.GetProperty("name").ToString());
+                row.Add(user.GetProperty("age").ToString());
+                row.Add(user.GetProperty("phone").ToString());
+                row.Add(user.GetProperty("role").ToString());
+                dtGrdSeller.Rows.Add(row.ToArray());
+
+                dtGrdSeller.BorderStyle = BorderStyle.None;
+                dtGrdSeller.HorizontalScrollingOffset = 0;
+            }
+        }
+
+        private void cellClickIndexChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if(e.RowIndex < getSellers().Count)
+            {
+                var user = getSellers()[e.RowIndex];
+
+
+                if (user != null)
+                {
+                    // use the backendless object to populate the textbox.
+                    txtSellerAge.Text = user.GetProperty("age").ToString();
+                    txtSellerName.Text = user.GetProperty("name").ToString();
+                    txtSellerPhone.Text = user.GetProperty("phone").ToString();
+                    txtSellerPassword.Text = user.GetProperty("mypassword").ToString();
+                    txtSellerId.Text = user.Email;
+                }
+                else
+                {
+                    txtSellerName.Text = "NO DATA";
+                }
             }
         }
     }

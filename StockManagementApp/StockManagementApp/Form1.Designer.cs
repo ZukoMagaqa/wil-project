@@ -49,6 +49,7 @@ namespace StockManagementApp
             // txtUsername
             // 
             this.txtUsername.BackColor = System.Drawing.Color.White;
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtUsername.ForeColor = System.Drawing.Color.Green;
             this.txtUsername.Location = new System.Drawing.Point(504, 211);
@@ -61,6 +62,7 @@ namespace StockManagementApp
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.Color.White;
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtPassword.ForeColor = System.Drawing.Color.Green;
             this.txtPassword.Location = new System.Drawing.Point(504, 254);
@@ -74,6 +76,7 @@ namespace StockManagementApp
             // cmbxRoles
             // 
             this.cmbxRoles.BackColor = System.Drawing.Color.White;
+            this.cmbxRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxRoles.Font = new System.Drawing.Font("Menlo", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxRoles.ForeColor = System.Drawing.Color.Green;
             this.cmbxRoles.FormattingEnabled = true;
@@ -84,7 +87,6 @@ namespace StockManagementApp
             this.cmbxRoles.Name = "cmbxRoles";
             this.cmbxRoles.Size = new System.Drawing.Size(219, 21);
             this.cmbxRoles.TabIndex = 2;
-            this.cmbxRoles.Text = "Select Role";
             this.cmbxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
