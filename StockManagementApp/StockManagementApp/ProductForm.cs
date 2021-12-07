@@ -57,7 +57,10 @@ namespace StockManagementApp
 
         private void btnRefreshClick(object sender, EventArgs e)
         {
-
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dtGrdProduct.DataSource;
+            bs.Filter = dtGrdProduct.Columns[2].ToString() + " LIKE '%" + cmbBoxProdLoad.Text + "%'";
+            dtGrdProduct.DataSource = bs;
         }
 
         private void selectedCategoryIndex(object sender, EventArgs e)
@@ -245,5 +248,6 @@ namespace StockManagementApp
                 Clear();
             }
         }
+
     }
 }

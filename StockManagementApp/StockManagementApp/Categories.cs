@@ -111,11 +111,9 @@ namespace StockManagementApp
 
                 int index = lstBoxCategories.SelectedIndex;
 
-                lstBoxCategories.Items.RemoveAt(index);
-                lstBoxCategories.Items.Insert(index, String.Format(columns, truncate.Truncate(category.objectId, 5), category.Name, category.Description));
-                
                 Backendless.Persistence.Of<Category>().Save(category);
                 MessageBox.Show("Successfully updated category");
+                LoadCat();
                 Clear();
             }
         }
@@ -143,6 +141,7 @@ namespace StockManagementApp
                         MessageBox.Show("Category was not found with ID " + list[index].objectId);
                     }
                     Backendless.Data.Of<Category>().Remove(list[index]);
+                    LoadCat();
                 }
 
                 MessageBox.Show("Successfully deleted category");

@@ -43,10 +43,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label1.Font = new System.Drawing.Font("Menlo", 18F);
             this.label1.ForeColor = System.Drawing.Color.Green;
-            this.label1.Location = new System.Drawing.Point(190, 29);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(142, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(519, 35);
+            this.label1.Size = new System.Drawing.Size(404, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "STOCK MANAGEMENT APPLICATION";
             // 
@@ -56,10 +55,9 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label7.Font = new System.Drawing.Font("Menlo", 8.25F);
             this.label7.ForeColor = System.Drawing.Color.Green;
-            this.label7.Location = new System.Drawing.Point(597, 397);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(448, 323);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 16);
+            this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 11;
             this.label7.Text = "Version 1.0.0";
             // 
@@ -71,38 +69,35 @@
             // 
             this.MyProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.MyProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.MyProgress.Location = new System.Drawing.Point(2, 460);
-            this.MyProgress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MyProgress.Location = new System.Drawing.Point(2, 374);
             this.MyProgress.Name = "MyProgress";
-            this.MyProgress.Size = new System.Drawing.Size(897, 12);
+            this.MyProgress.Size = new System.Drawing.Size(673, 10);
             this.MyProgress.TabIndex = 13;
             // 
             // pictureBox1
             // 
             this.pictureBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.pictureBox1.Image = global::StockManagementApp.Properties.Resources.inventory_management_icon_4;
-            this.pictureBox1.Location = new System.Drawing.Point(162, 93);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(122, 76);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(575, 320);
+            this.pictureBox1.Size = new System.Drawing.Size(431, 260);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
             // Splash
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(901, 473);
+            this.ClientSize = new System.Drawing.Size(676, 374);
             this.Controls.Add(this.MyProgress);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.ForeColor = System.Drawing.Color.Green;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Splash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Splash";

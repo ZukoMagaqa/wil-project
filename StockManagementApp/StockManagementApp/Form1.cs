@@ -89,7 +89,7 @@ namespace StockManagementApp
                 catch (BackendlessException exception)
                 {
                     // login failed, to get the error code, use exception.Fault.FaultCode
-                    MessageBox.Show("Sorry the ",exception.Message);
+                    MessageBox.Show(exception.Message);
                 }
             }
             else
